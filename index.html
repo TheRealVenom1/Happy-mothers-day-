@@ -12,7 +12,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #1a0a0a 0%, #3d0505 50%, #000000 100%);
+            background: radial-gradient(circle, #1a0a0a 0%, #000000 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
             color: white;
@@ -20,22 +20,24 @@
         }
 
         #enter-btn {
-            padding: 18px 40px;
-            font-size: 1.5rem;
+            padding: 20px 50px;
+            font-size: 1.6rem;
             background: #ff4d4d;
             border: none;
             color: white;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 0 30px rgba(255, 77, 77, 0.6);
+            box-shadow: 0 0 30px rgba(255, 77, 77, 0.8);
             transition: 0.4s;
             z-index: 100;
+            font-weight: bold;
         }
 
-        #enter-btn:hover { transform: scale(1.1); box-shadow: 0 0 50px #ff4d4d; }
+        #enter-btn:hover { transform: scale(1.1); box-shadow: 0 0 60px #ff4d4d; }
 
         .main-stage { display: none; }
 
+        /* تأثير القلب المضيء */
         .heart-container {
             position: relative;
             width: 150px;
@@ -67,20 +69,20 @@
         .heart-shape:after { left: 40px; top: 0; }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
+            0%, 100% { transform: scale(1); }
             50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
         }
 
-        h1 { font-size: 2.8rem; margin: 20px 0; text-shadow: 0 0 20px rgba(255, 77, 77, 0.8); }
-        p { font-size: 1.4rem; color: #ffcccc; margin-bottom: 20px; }
+        h1 { font-size: 2.8rem; margin: 20px 0; text-shadow: 0 0 20px #ff4d4d; }
+        p { font-size: 1.6rem; color: #ffcccc; margin-bottom: 20px; }
 
         .floating-heart {
             position: absolute;
-            color: rgba(255, 77, 77, 0.7);
+            color: rgba(255, 77, 77, 0.8);
             font-size: 24px;
             pointer-events: none;
             z-index: 1;
+            animation: drift linear forwards;
         }
 
         @keyframes drift {
@@ -91,32 +93,34 @@
 </head>
 <body>
 
-    <button id="enter-btn">اضغطي هنا يا أغلى الناس ❤️</button>
+    <button id="enter-btn">اضغطي هنا يا ست الكل ❤️</button>
 
     <div class="main-stage" id="stage">
         <div class="heart-container">
             <div class="heart-shape"></div>
         </div>
-        <h1>كل سنة وأنتِ طيبة يا ست الكل ❤️</h1>
-        <p>يا نور عيني يا أغلى من حياتي.. ربنا يبارك في عمرك</p>
+        <h1>كل سنة وأنتِ طيبة يا أمي ❤️</h1>
+        <p>الأيام اللي عشتيها معايا.. فعلاً مبيتنسيش</p>
     </div>
 
-    <audio id="tamer-song" loop preload="auto">
-        <source src="https://www.mboxdrive.com/Tamer-Hosny-Ommy-Thom-Ommy.mp3" type="audio/mpeg">
+    <audio id="bg-music" loop preload="auto">
+        <source src="tamer_v.mp3" type="audio/mpeg">
     </audio>
 
     <script>
         const btn = document.getElementById('enter-btn');
         const stage = document.getElementById('stage');
-        const audio = document.getElementById('tamer-song');
+        const audio = document.getElementById('bg-music');
 
         btn.onclick = function() {
             btn.style.display = 'none';
             stage.style.display = 'block';
             
-            // تشغيل الأغنية بقوة الـ JS
-            audio.play().catch(e => {
-                console.log("محاولة تشغيل بديلة...");
+            // محاولة تشغيل الأغنية
+            audio.play().then(() => {
+                console.log("شغالة يا وحش!");
+            }).catch(e => {
+                console.log("المتصفح محتاج تفاعل، بنحاول تاني...");
                 audio.muted = false;
                 audio.play();
             });
@@ -131,10 +135,10 @@
                 heart.className = 'floating-heart';
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
-                heart.style.animation = `drift ${Math.random() * 3 + 4}s linear forwards`;
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
                 document.body.appendChild(heart);
                 setTimeout(() => heart.remove(), 7000);
-            }, 400);
+            }, 350);
         }
     </script>
 </body>
