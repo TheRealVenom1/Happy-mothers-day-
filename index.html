@@ -13,13 +13,12 @@
             align-items: center;
             min-height: 100vh;
             background: linear-gradient(135deg, #1a0a0a 0%, #3d0505 50%, #000000 100%);
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
             color: white;
             text-align: center;
         }
 
-        /* زرار الدخول الرومانسي */
         #enter-btn {
             padding: 18px 40px;
             font-size: 1.5rem;
@@ -33,15 +32,10 @@
             z-index: 100;
         }
 
-        #enter-btn:hover {
-            transform: scale(1.1);
-            background: #ff1a1a;
-            box-shadow: 0 0 50px #ff4d4d;
-        }
+        #enter-btn:hover { transform: scale(1.1); box-shadow: 0 0 50px #ff4d4d; }
 
         .main-stage { display: none; }
 
-        /* تأثير القلب المضيء */
         .heart-container {
             position: relative;
             width: 150px;
@@ -55,7 +49,6 @@
             display: inline-block;
             height: 80px;
             position: relative;
-            top: 0;
             transform: rotate(-45deg);
             width: 80px;
             box-shadow: 0 0 60px #ff4d4d;
@@ -74,25 +67,14 @@
         .heart-shape:after { left: 40px; top: 0; }
 
         @keyframes pulse {
-            0% { transform: scale(1); filter: drop-shadow(0 0 10px #ff4d4d); }
-            50% { transform: scale(1.15); filter: drop-shadow(0 0 30px #ff4d4d); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 10px #ff4d4d); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
         }
 
-        h1 {
-            font-size: 3rem;
-            margin: 20px 0;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: fadeInDown 2s;
-        }
+        h1 { font-size: 2.8rem; margin: 20px 0; text-shadow: 0 0 20px rgba(255, 77, 77, 0.8); }
+        p { font-size: 1.4rem; color: #ffcccc; margin-bottom: 20px; }
 
-        p {
-            font-size: 1.5rem;
-            color: #ffcccc;
-            animation: fadeInUp 3s;
-        }
-
-        /* قلوب طايرة في الخلفية */
         .floating-heart {
             position: absolute;
             color: rgba(255, 77, 77, 0.7);
@@ -102,8 +84,8 @@
         }
 
         @keyframes drift {
-            0% { transform: translateY(110vh) translateX(0) rotate(0); opacity: 1; }
-            100% { transform: translateY(-10vh) translateX(100px) rotate(360deg); opacity: 0; }
+            0% { transform: translateY(110vh) rotate(0); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
@@ -119,8 +101,8 @@
         <p>يا نور عيني يا أغلى من حياتي.. ربنا يبارك في عمرك</p>
     </div>
 
-    <audio id="tamer-song" loop>
-        <source src="tamer.mp3" type="audio/mpeg">
+    <audio id="tamer-song" loop preload="auto">
+        <source src="https://www.mboxdrive.com/Tamer-Hosny-Ommy-Thom-Ommy.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -131,7 +113,14 @@
         btn.onclick = function() {
             btn.style.display = 'none';
             stage.style.display = 'block';
-            audio.play().catch(e => console.log("تحتاج لإضافة ملف tamer.mp3 بجانب الكود"));
+            
+            // تشغيل الأغنية بقوة الـ JS
+            audio.play().catch(e => {
+                console.log("محاولة تشغيل بديلة...");
+                audio.muted = false;
+                audio.play();
+            });
+            
             createHearts();
         };
 
