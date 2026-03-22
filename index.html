@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إلى أغلى إنسانة في حياتي</title>
+    <title>إلى أمي الغالية</title>
     <style>
-        /* CSS Style */
         body {
             margin: 0;
             padding: 0;
@@ -13,17 +12,37 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #0d0d0d; /* خلفية داكنة وفخمة */
+            background: radial-gradient(circle, #1a0505 0%, #000000 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
             color: white;
+            cursor: pointer; /* عشان تعرف إن فيه تفاعل */
         }
 
         .container {
             text-align: center;
+            z-index: 10;
         }
 
-        /* رسم القلب بالـ CSS */
+        /* زرار البدء */
+        #start-btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background: #ff4d4d;
+            border: none;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px #ff4d4d;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        #start-btn:hover { transform: scale(1.1); }
+
+        .content { display: none; } /* مخفي لحد ما تدوس */
+
+        /* القلب */
         .heart-box {
             position: relative;
             width: 100px;
@@ -41,8 +60,7 @@
             transform: rotate(-45deg);
             transform-origin: 0 100%;
             left: 50px;
-            box-shadow: 0 0 40px #ff4d4d;
-            animation: drawHeart 2s ease-out forwards;
+            box-shadow: 0 0 50px #ff4d4d;
         }
 
         .heart::after {
@@ -57,89 +75,77 @@
             left: 0;
         }
 
-        /* أنيميشن رسم ونبض القلب */
-        @keyframes drawHeart {
-            0% { opacity: 0; transform: rotate(-45deg) scale(0); }
-            100% { opacity: 1; transform: rotate(-45deg) scale(1); }
-        }
-
         @keyframes beat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.2); }
         }
 
-        /* تنسيق الكلام */
         .message {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            text-shadow: 2px 2px 10px rgba(255, 77, 77, 0.5);
-            opacity: 0;
-            animation: fadeIn 2s ease-in forwards 1.5s;
-            line-height: 1.6;
-        }
-
-        .sub-message {
+            text-shadow: 0 0 15px #ff4d4d;
             margin-top: 20px;
-            font-size: 1.3rem;
-            color: #ccc;
-            opacity: 0;
-            animation: fadeIn 2s ease-in forwards 3s;
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+        .sub-message { font-size: 1.4rem; color: #ddd; margin-top: 15px; }
 
-        /* تأثير جزيئات متطايرة بسيطة */
-        .sparkle {
+        /* جزيئات القلوب المتطايرة */
+        .floating-heart {
             position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: move-sparkle 5s linear infinite;
+            color: #ff4d4d;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: floatUp 4s linear infinite;
         }
 
-        @keyframes move-sparkle {
-            0% { transform: translateY(0); opacity: 0.5; }
-            100% { transform: translateY(-100vh); opacity: 0; }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="heart-box">
-            <div class="heart"></div>
-        </div>
+        <button id="start-btn">اضغطي هنا يا ست الكل ❤️</button>
 
-        <div class="message">
-            كل سنة وأنتِ طيبة يا أغلى من روحي ❤️
-        </div>
-        <div class="sub-message">
-            أنتِ الحب، الحنان، والأمان.. ربنا يخليكي ليا يا أمي.
+        <div class="content" id="main-content">
+            <div class="heart-box"><div class="heart"></div></div>
+            <div class="message">كل سنة وأنتِ طيبة يا أمي ❤️</div>
+            <div class="sub-message">أنتِ أجمل هدية من ربنا في حياتي</div>
         </div>
     </div>
 
-    <script>
-        // إضافة بعض اللمسات الجمالية (نجوم صغيرة خلفية)
-        function createSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.classList.add('sparkle');
-            sparkle.style.left = Math.random() * 100 + 'vw';
-            sparkle.style.top = '100vh';
-            const size = Math.random() * 3 + 1 + 'px';
-            sparkle.style.width = size;
-            sparkle.style.height = size;
-            sparkle.style.animationDuration = Math.random() * 3 + 2 + 's';
-            
-            document.body.appendChild(sparkle);
-            
-            setTimeout(() => {
-                sparkle.remove();
-            }, 5000);
-        }
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوت.
+    </audio>
 
-        setInterval(createSparkle, 200);
+    <script>
+        const btn = document.getElementById('start-btn');
+        const content = document.getElementById('main-content');
+        const music = document.getElementById('bg-music');
+
+        btn.addEventListener('click', () => {
+            btn.style.display = 'none';
+            content.style.display = 'block';
+            music.play(); // تشغيل الموسيقى
+            startHearts();
+        });
+
+        // تأثير القلوب الطايرة
+        function startHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('floating-heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+            }, 300);
+        }
     </script>
 </body>
 </html>
