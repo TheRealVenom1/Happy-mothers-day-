@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إلى أمي الغالية</title>
+    <title>إلى ست الحبايب ❤️</title>
     <style>
         body {
             margin: 0;
@@ -12,139 +12,140 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: radial-gradient(circle, #1a0505 0%, #000000 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0a0a 0%, #3d0505 50%, #000000 100%);
+            font-family: 'Cairo', sans-serif;
             overflow: hidden;
             color: white;
-            cursor: pointer; /* عشان تعرف إن فيه تفاعل */
-        }
-
-        .container {
             text-align: center;
-            z-index: 10;
         }
 
-        /* زرار البدء */
-        #start-btn {
-            padding: 15px 30px;
-            font-size: 1.2rem;
+        /* زرار الدخول الرومانسي */
+        #enter-btn {
+            padding: 18px 40px;
+            font-size: 1.5rem;
             background: #ff4d4d;
             border: none;
             color: white;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 0 20px #ff4d4d;
-            transition: 0.3s;
-            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(255, 77, 77, 0.6);
+            transition: 0.4s;
+            z-index: 100;
         }
 
-        #start-btn:hover { transform: scale(1.1); }
-
-        .content { display: none; } /* مخفي لحد ما تدوس */
-
-        /* القلب */
-        .heart-box {
-            position: relative;
-            width: 100px;
-            height: 90px;
-            margin: 0 auto 50px;
-            animation: beat 1.2s infinite ease-in-out;
-        }
-
-        .heart {
-            position: absolute;
-            width: 50px;
-            height: 80px;
-            background-color: #ff4d4d;
-            border-radius: 50px 50px 0 0;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
-            left: 50px;
+        #enter-btn:hover {
+            transform: scale(1.1);
+            background: #ff1a1a;
             box-shadow: 0 0 50px #ff4d4d;
         }
 
-        .heart::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 80px;
+        .main-stage { display: none; }
+
+        /* تأثير القلب المضيء */
+        .heart-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .heart-shape {
             background-color: #ff4d4d;
-            border-radius: 50px 50px 0 0;
-            transform: rotate(90deg);
-            transform-origin: 0 100%;
-            left: 0;
+            display: inline-block;
+            height: 80px;
+            position: relative;
+            top: 0;
+            transform: rotate(-45deg);
+            width: 80px;
+            box-shadow: 0 0 60px #ff4d4d;
         }
 
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+        .heart-shape:before, .heart-shape:after {
+            content: "";
+            background-color: #ff4d4d;
+            border-radius: 50%;
+            height: 80px;
+            position: absolute;
+            width: 80px;
         }
 
-        .message {
-            font-size: 2.5rem;
-            font-weight: bold;
-            text-shadow: 0 0 15px #ff4d4d;
-            margin-top: 20px;
+        .heart-shape:before { top: -40px; left: 0; }
+        .heart-shape:after { left: 40px; top: 0; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 10px #ff4d4d); }
+            50% { transform: scale(1.15); filter: drop-shadow(0 0 30px #ff4d4d); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 10px #ff4d4d); }
         }
 
-        .sub-message { font-size: 1.4rem; color: #ddd; margin-top: 15px; }
+        h1 {
+            font-size: 3rem;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: fadeInDown 2s;
+        }
 
-        /* جزيئات القلوب المتطايرة */
+        p {
+            font-size: 1.5rem;
+            color: #ffcccc;
+            animation: fadeInUp 3s;
+        }
+
+        /* قلوب طايرة في الخلفية */
         .floating-heart {
             position: absolute;
-            color: #ff4d4d;
-            font-size: 20px;
-            user-select: none;
+            color: rgba(255, 77, 77, 0.7);
+            font-size: 24px;
             pointer-events: none;
-            animation: floatUp 4s linear infinite;
+            z-index: 1;
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        @keyframes drift {
+            0% { transform: translateY(110vh) translateX(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(-10vh) translateX(100px) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <button id="start-btn">اضغطي هنا يا ست الكل ❤️</button>
+    <button id="enter-btn">اضغطي هنا يا أغلى الناس ❤️</button>
 
-        <div class="content" id="main-content">
-            <div class="heart-box"><div class="heart"></div></div>
-            <div class="message">كل سنة وأنتِ طيبة يا أمي ❤️</div>
-            <div class="sub-message">أنتِ أجمل هدية من ربنا في حياتي</div>
+    <div class="main-stage" id="stage">
+        <div class="heart-container">
+            <div class="heart-shape"></div>
         </div>
+        <h1>كل سنة وأنتِ طيبة يا ست الكل ❤️</h1>
+        <p>يا نور عيني يا أغلى من حياتي.. ربنا يبارك في عمرك</p>
     </div>
 
-    <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        متصفحك لا يدعم تشغيل الصوت.
+    <audio id="tamer-song" loop>
+        <source src="tamer.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        const btn = document.getElementById('start-btn');
-        const content = document.getElementById('main-content');
-        const music = document.getElementById('bg-music');
+        const btn = document.getElementById('enter-btn');
+        const stage = document.getElementById('stage');
+        const audio = document.getElementById('tamer-song');
 
-        btn.addEventListener('click', () => {
+        btn.onclick = function() {
             btn.style.display = 'none';
-            content.style.display = 'block';
-            music.play(); // تشغيل الموسيقى
-            startHearts();
-        });
+            stage.style.display = 'block';
+            audio.play().catch(e => console.log("تحتاج لإضافة ملف tamer.mp3 بجانب الكود"));
+            createHearts();
+        };
 
-        // تأثير القلوب الطايرة
-        function startHearts() {
+        function createHearts() {
             setInterval(() => {
                 const heart = document.createElement('div');
                 heart.innerHTML = '❤️';
-                heart.classList.add('floating-heart');
+                heart.className = 'floating-heart';
                 heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                heart.style.animation = `drift ${Math.random() * 3 + 4}s linear forwards`;
                 document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 4000);
-            }, 300);
+                setTimeout(() => heart.remove(), 7000);
+            }, 400);
         }
     </script>
 </body>
